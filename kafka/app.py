@@ -3,7 +3,7 @@ import config
 from kafka import kafkaConsumer, KafkaProducer
 from kafka.errors import KafkaError
 
-#BOOTSTRAP_SERVERS='112.74.55.42:9092'
+#BOOTSTRAP_SERVERS='127.0.0.1:9092'
 kafka_host='127.0.0.1' # host
 kafka_port=9092 # port
 
