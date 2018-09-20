@@ -14,6 +14,7 @@ BODY = string.join((
          "",
          text
          ),"\r\n")
+
 server = smtplib.SMTP()
 server.connect(HOST,"25")
 server.starttls()
