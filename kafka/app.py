@@ -4,8 +4,8 @@ from kafka import KafkaConsumer, KafkaProducer
 from kafka.errors import KafkaError
 
 #BOOTSTRAP_SERVERS='127.0.0.1:9092'
-kafka_host=config.kafka_host # host
-kafka_port=config.kafka_port # port
+kafka_host=config.KAFKA_HOST # host
+kafka_port=config.KAFKA_PORT # port
 
 def run():
     producer = KafkaProducer(bootstrap_servers=['{kafka_host}:{kafka_port}'.format(
