@@ -1,9 +1,10 @@
 #!/usr/bin/env python
 import redis, time
+import config
 
-pool = redis.ConnectionPool(host = 'localhost',port = 6379, decode_responses = True)
+pool = redis.ConnectionPool(host = config.HOST, port = config.PORT, decode_responses = True)
 
-r = redis.Redis(connection_pool = pool)
+r = redis.Redis(connection_pool = config.CONNECTION_POOL)
 #r.set('name','cugblack', ex = 3)
 #print r.get('name')
 #time.sleep(3)
