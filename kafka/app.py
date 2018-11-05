@@ -1,11 +1,11 @@
 #!/usr/bin/env python
 import config
-from kafka import kafkaConsumer, KafkaProducer
+from kafka import KafkaConsumer, KafkaProducer
 from kafka.errors import KafkaError
 
 #BOOTSTRAP_SERVERS='127.0.0.1:9092'
-kafka_host='127.0.0.1' # host
-kafka_port=9092 # port
+kafka_host=config.kafka_host # host
+kafka_port=config.kafka_port # port
 
 def run():
     producer = KafkaProducer(bootstrap_servers=['{kafka_host}:{kafka_port}'.format(
@@ -13,7 +13,7 @@ def run():
         kafka_port=kafka_port
     )])
     message_string = 'some message'
-    kafka_topic = 'test1'
+    kafka_topic = 'black'
     response = producer.send(kafka_topic, message_string.encode('utf-8'))
     
 if __name__ == '__main__':
