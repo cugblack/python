@@ -1,18 +1,21 @@
 #!/usr/bin/env python
 import redis, time
 import config
+from redis import RedisError
 
-pool = redis.ConnectionPool(host = config.HOST, port = config.PORT, decode_responses = True)
 
-r = redis.Redis(connection_pool = config.CONNECTION_POOL)
-r.set('name','cugblack', ex = 3)
-print r.get('name')
-time.sleep(3)
-print r.get('name')
+def redis_list():
+    # CONNECTION_POOL = "pool"
+    pool = redis.ConnectionPool(host=config.HOST, port=config.PORT, decode_responses=True)
+    try:
+        r = redis.Redis(connection_pool = pool)
+        r.set('name','cugblack', ex = 3)
+        print r.get('name')
+        time.sleep(3)
+        print r.get('name')
+        print "success"
+    except RedisError:
+        print RedisError
 
-r.hset('hash1', 'k1', 'v1')
-r.hset('hash2', 'k2', 'v2')
-
-print r.hkeys('hash1')
-print r.hget('hash2', 'k2')
-print r.hmget('hash1', 'k1', 'k2')
+if __name__ == "__main__":
+    redis_list()
