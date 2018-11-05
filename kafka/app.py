@@ -8,13 +8,16 @@ kafka_host=config.KAFKA_HOST # host
 kafka_port=config.KAFKA_PORT # port
 
 def run():
-    producer = KafkaProducer(bootstrap_servers=['{kafka_host}:{kafka_port}'.format(
+    try:
+        producer = KafkaProducer(bootstrap_servers=['{kafka_host}:{kafka_port}'.format(
         kafka_host=kafka_host,
         kafka_port=kafka_port
-    )])
-    message_string = 'some message'
-    kafka_topic = 'black'
-    response = producer.send(kafka_topic, message_string.encode('utf-8'))
+        )])
+        message_string = 'some message'
+        kafka_topic = 'black'
+        response = producer.send(kafka_topic, message_string.encode('utf-8'))
+    except  KafkaError :
+        print KafkaError
     
 if __name__ == '__main__':
       run()
