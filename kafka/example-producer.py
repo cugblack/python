@@ -1,10 +1,11 @@
 #!/usr/bin/env pyhon
-from kafka import KafkaProducer 
-producer = KafkaProducer(bootstrap_servers='127.0.0.1:9092')
+from kafka import KafkaProducer
+import config
+producer = KafkaProducer(bootstrap_servers = config.BOOTSTRAP_SERVERS)
 
 def Producer():
-    for i in range(100):
-      producer.send('black_t', b'test-message')
+    for i in range(10):
+      producer.send('black', b'test-message')
       print i
       i = i + 1
 if __name__ == '__main__':
