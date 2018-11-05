@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-import redis, time
+import redis
 import config
 
 pool = redis.ConnectionPool(host = config.HOST, port = config.PORT, decode_responses = True)
