@@ -1,23 +1,38 @@
-#!/usr/bin/env python
+#_*_ coding=utf-8
+import config
+import smtplib
+from email.mime.text import MIMEText
+from email.mime.multipart import MIMEMultipart
 
-import smtplib, string
+def mail():
+    import datetime
+    from datetime import date
+    msg = MIMEMultipart()
+    msg["from"] = config.SENDER_MAIL
+    msg["to"] = config.TO
+    msg["subject"] = u"测试邮件"
+    txt = MIMEText(u"这是一封带附件的测试邮件。", "plain", "utf-8")
+    msg.attach(txt)
+    TIME = date.today()
+    PATH = "E:\\"
+    # 构造附件
+    att = MIMEText(open(PATH + u"2018-06-29-temp.zip", "rb").read(), "base64", "utf-8")
+    att["Content-Type"] = "application/octet-stream"
+    att["Content-Disposition"] = "attachment; filename= '2018-06-29-temp.zip' "
+    msg.attach(att)
 
-HOST = "smtp.gmail.com"
-SUBJECT = "test"
-TO = "to_who@qq.com"
-FROM = "cugblack@gmail.com"
-text = "python test"
-BODY = string.join(( 
-         "From: %s" % FROM,
-         "To  : %s" % TO,
-         "Subject: %s" % SUBJECT,
-         "",
-         text
-         ),"\r\n")
-server = smtplib.SMTP()
-server.connect(HOST,"25")
-server.starttls()
-server.login("yourmail@gmail.com","yourpassword")
-server.sendmail(FROM, [TO], BODY)
-server.quit()
+    try:
+        smtpObj = smtplib.SMTP()
+        smtpObj.connect(config.HOST, "25")
+        state = smtpObj.login(config.SENDER_MAIL, config.MAIL_AUTH)
+        if state[0] == 235:
+            smtpObj.sendmail(msg["from"], msg["to"], msg.as_string())
+            print(u"邮件发送成功")
+            print TIME
 
+            smtpObj.quit()
+
+    except smtplib.SMTPException as e:
+        print e
+if __name__ == "__main__":
+    mail()
