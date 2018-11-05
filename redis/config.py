@@ -1,3 +1,3 @@
-HOST = "localhost"
+HOST = "120.78.159.205"
 PORT = 6379
-CONNECTION_POOL = "pool"
+

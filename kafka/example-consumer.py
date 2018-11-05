@@ -1,11 +1,13 @@
 #!/usr/bin/env python
 #-*- coding: utf-8 -*- 
-import time
-from kafka import KafkaConsumer 
-consumer = KafkaConsumer('black_t', group_id = 'consumer-black', bootstrap_servers='127.0.0.1:9092')
+from kafka import KafkaConsumer, TopicPartition
+
+import config
+
+consumer = KafkaConsumer('black', group_id = 'consumer-black', bootstrap_servers = config.BOOTSTRAP_SERVERS)
 
 def log(str):#打印日志
-    t = time.strftime(r"%Y-%m-%d_%H-%M-%S",time.localtime())  
+    t = time.strftime(r"%Y-%m-%d_%H-%M-%S",time.localtime())
     print("[%s]%s"%(t,str))
     log('start consumer')
 
