@@ -1,5 +1,5 @@
 # _*_ coding: utf-8 _*_
-import os, sys, time, pycurl
+import os, sys, pycurl
 
 URL = "http://www.baidu.com" #目标URL
 c = pycurl.Curl()            #创建curl对象
