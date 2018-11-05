@@ -2,9 +2,9 @@
 #-*- coding: utf-8 -*- 
 from kafka import KafkaConsumer, TopicPartition
 
-import config
+import config, time
 
-consumer = KafkaConsumer('black', group_id = 'consumer-black', bootstrap_servers = config.BOOTSTRAP_SERVERS)
+consumer = KafkaConsumer('black', group_id = 'consumer-black', bootstrap_servers = config.BOOTSTRAP_SERVERS, onsumer_timeout_ms = 1000)
 
 def log(str):#打印日志
     t = time.strftime(r"%Y-%m-%d_%H-%M-%S",time.localtime())
