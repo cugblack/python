@@ -33,7 +33,7 @@ def file_out(SQL, FILE):
     RESULTS = db_conn(SQL)
     try:
         fo = open(FILE,"w")
-        fo.write("ID,TIME,PROJECT_ID")
+        fo.write("ID, TIME, PROJECT_ID")
         for res in RESULTS:
             ID = res[0]
             START_TIME = time_transfer(res[8])  # 时间为时间戳，先转换格式
@@ -45,6 +45,7 @@ def file_out(SQL, FILE):
     return FILE
 
 def send_mail(FILE):
+    #发送邮件，生成的.csv文件作为附件
     import smtplib
     from email.mime.text import MIMEText
     from email.mime.multipart import MIMEMultipart
@@ -73,10 +74,11 @@ def send_mail(FILE):
     except smtplib.SMTPException as e:
         print "邮件发送失败！！！", e
 
-def retry():
-    import os
-    # os.remove("E:\\desktop\\sum.csv")
-    file_out(SQL, FILE)
+# def retry():
+#     import os
+#     # os.remove("E:\\desktop\\sum.csv")
+#     file_out(SQL, FILE)
+#     send_mail(FILE)
 
 def main():
     file_out(SQL, FILE)
