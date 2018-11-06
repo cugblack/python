@@ -20,7 +20,7 @@ c.setopt(pycurl.WRITEDATA, indexfile)
 try:
     c.perform()
 except Exception,e:
-    print "connect error: " +srt(e)
+    print "connect error: " + srt(e)
     indexfile.close()
     c.close()
     sys.exit()
