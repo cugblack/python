@@ -1,5 +1,4 @@
 #忽略配置文件
 */config.py
-redis/config.py
+
 .idea/*
-auto-scripts/config.py
