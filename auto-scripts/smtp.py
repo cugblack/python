@@ -5,7 +5,6 @@ from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 
 def mail():
-    import datetime
     from datetime import date
     msg = MIMEMultipart()
     msg["from"] = config.SENDER_MAIL
@@ -27,12 +26,10 @@ def mail():
         state = smtpObj.login(config.SENDER_MAIL, config.MAIL_AUTH)
         if state[0] == 235:
             smtpObj.sendmail(msg["from"], msg["to"], msg.as_string())
-            print(u"邮件发送成功")
-            print TIME
-
+            print "邮件于 %s 发送给 %s 成功" % (TIME, config.TO)
             smtpObj.quit()
-
     except smtplib.SMTPException as e:
         print e
+
 if __name__ == "__main__":
     mail()
