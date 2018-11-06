@@ -45,11 +45,12 @@ def file_out(SQL, FILE):
     return FILE
 
 def send_mail(FILE):
-    #发送邮件，生成的.csv文件作为附件
+#发送邮件，生成的.csv文件作为附件
     import smtplib
     from email.mime.text import MIMEText
     from email.mime.multipart import MIMEMultipart
     from datetime import date
+
     msg = MIMEMultipart()
     msg["from"] = config.SENDER_MAIL
     msg["to"] = config.TO
