@@ -3,8 +3,6 @@
 import pymysql, time, config
 from pymysql import err
 from exceptions import Exception
-from email.mime.text import MIMEText
-from email.mime.multipart import MIMEMultipart
 
 SQL = "SELECT t.* FROM cloud.app t LIMIT 5"
 FILE = "E:\\desktop\\sum.csv"
@@ -44,7 +42,36 @@ def file_out(SQL, FILE):
     except Exception:
         print "写入文件失败", Exception
     fo.close()
+    return FILE
 
+def send_mail(FILE):
+    import smtplib
+    from email.mime.text import MIMEText
+    from email.mime.multipart import MIMEMultipart
+    from datetime import date
+    msg = MIMEMultipart()
+    msg["from"] = config.SENDER_MAIL
+    msg["to"] = config.TO
+    msg["subject"] = u"运营周报"
+    txt = MIMEText(u"这是一封带附件的运营周报。", "plain", "utf-8")
+    msg.attach(txt)
+    TIME = date.today()
+    # 构造附件
+    att = MIMEText(open(FILE, "rb").read(), "base64", "utf-8")
+    att["Content-Type"] = "application/octet-stream"
+    att["Content-Disposition"] = "attachment; filename= 'sum.csv' "
+    msg.attach(att)
+
+    try:
+        smtpObj = smtplib.SMTP()
+        smtpObj.connect(config.HOST, "25")
+        state = smtpObj.login(config.SENDER_MAIL, config.MAIL_AUTH)
+        if state[0] == 235:
+            smtpObj.sendmail(msg["from"], msg["to"], msg.as_string())
+            print "邮件已于 %s 发送给: %s" % (TIME, config.TO)
+            smtpObj.quit()
+    except smtplib.SMTPException as e:
+        print "邮件发送失败！！！", e
 
 def retry():
     import os
@@ -53,6 +80,7 @@ def retry():
 
 def main():
     file_out(SQL, FILE)
+    send_mail(FILE)
 
 if __name__ == "__main__":
     main()
