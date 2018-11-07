@@ -1,6 +1,6 @@
 #!/usr/binn/env python
 # -*- coding: utf-8 -*-
-# import socket
+#TCP SOCKET
 from socket import *
 from time import ctime
 
