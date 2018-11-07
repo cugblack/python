@@ -7,6 +7,7 @@ import sys, nmap
 #获取hosts及port
 SCAN_ROW = []
 INPUT_DATA = raw_input("请输入host以及端口： ")
+#主机及端口输入支持多种格式 ，192.168.20.0/24，也支持输入域名，端口与主机以空格分开 22,30,80-1000
 SCAN_ROW = INPUT_DATA.split(" ")
 if len(SCAN_ROW) != 2:
     print "Err input, example 192.168.0.1 22"
