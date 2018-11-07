@@ -30,6 +30,7 @@ def time_transfer(TIME_STAMP):
 
 def file_out(SQL, FILE):
 #写入结果到csv文件中
+    print "开始执行sql语句..."
     RESULTS = db_conn(SQL)
     try:
         fo = open(FILE,"w")
@@ -82,7 +83,9 @@ def send_mail(FILE):
 #     send_mail(FILE)
 
 def main():
+    print "开始查询数据..."
     file_out(SQL, FILE)
+    print "开始发送邮件..."
     send_mail(FILE)
 
 if __name__ == "__main__":
