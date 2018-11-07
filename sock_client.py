@@ -1,5 +1,6 @@
 #!/usr/binn/env python
 # -*- coding: utf-8 -*-
+#TCP SOCKET
 from socket import *
 
 HOST = "192.168.10.2"
