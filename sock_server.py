@@ -1,7 +1,7 @@
 #!/usr/binn/env python
 # -*- coding: utf-8 -*-
 # import socket
-from sock_server import *
+from socket import *
 from time import ctime
 
 HOST = "" #bind()所有地址
