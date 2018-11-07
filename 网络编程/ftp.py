@@ -10,7 +10,7 @@ def main():
     try:
         f = ftplib.FTP(HOST)
     except (socket.error, socket.gaierror),e:
-        print "cannot reach %s" % HOST, e
+        print "cannot reach %s" % HOST
         return
     print "connected to host: %s" %HOST
     #登录
