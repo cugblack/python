@@ -10,7 +10,7 @@ BUFSIZE = 1024 #缓冲区1k
 ADDR = (HOST, PORT)
 
 #创建套接字
-tcpSerSock = socket(AF_INET,SOCK_STREAM)
+tcpSerSock = socket(AF_INET,SOCK_STREAM) #SOCK_STREAM为tcp，SOCK_DGRAM为udp
 #监听
 tcpSerSock.bind(ADDR)
 tcpSerSock.listen(5)  #最大同时连接数
