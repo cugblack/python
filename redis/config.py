@@ -1,3 +1,3 @@
-HOST = "120.78.159.205"
+HOST = "localhost"
 PORT = 6379
 
