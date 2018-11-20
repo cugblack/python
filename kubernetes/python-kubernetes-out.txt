@@ -1,3 +1,15 @@
+Listing All services with their info:
+None 	default 	kubernetes 	10.96.0.1 	[{'name': 'https',
+ 'node_port': None,
+ 'port': 443,
+ 'protocol': 'TCP',
+ 'target_port': 6443}]
+List Namespaces:
+default
+kafka
+kube-public
+kube-system
+
 Listing pods with their IPs:
 192.168.253.15	kube-system	calico-etcd-z4vxt
 192.168.253.15	kube-system	calico-kube-controllers-854c9c7857-l2x8m

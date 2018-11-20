@@ -14,6 +14,25 @@ def list_pods():
     for i in ret.items:
         print("%s\t%s\t%s" %
               (i.status.pod_ip, i.metadata.namespace, i.metadata.name))
+
+def list_services():
+    config.load_kube_config()
+
+    v1 = client.CoreV1Api()
+    print("Listing All services with their info:\n")
+    ret = v1.list_service_for_all_namespaces(watch=False)
+    for i in ret.items:
+        print("%s \t%s \t%s \t%s \t%s \n" % (
+        i.kind, i.metadata.namespace, i.metadata.name, i.spec.cluster_ip, i.spec.ports))
+
+def list_namespaces():
+    config.load_kube_config()
+
+    v1 = client.CoreV1Api()
+    print("List Namespaces: ")
+    for ns in v1.list_namespace().items:
+        print(ns.metadata.name)
+
 def watch_namespaces():
      # Configs can be set in Configuration class directly or using helper
      # utility. If no argument provided, the config will be loaded from
@@ -52,6 +71,8 @@ def api_version():
 
 
 def main():
+    list_services()
+    list_namespaces()
     list_pods()
     watch_namespaces()
     api_version()
