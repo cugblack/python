@@ -33,6 +33,13 @@ def list_namespaces():
     for ns in v1.list_namespace().items:
         print(ns.metadata.name)
 
+# def list_deployment():
+#     config.load_kube_config()
+#
+#     v1 = client.CoreV1Api()
+#     print("List Deployment: ")
+#     for dm in v1
+
 def watch_namespaces():
      # Configs can be set in Configuration class directly or using helper
      # utility. If no argument provided, the config will be loaded from

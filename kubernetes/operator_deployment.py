@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 
-import yaml, time
+import  time
 
 from kubernetes import client, config
 
