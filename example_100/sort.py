@@ -17,7 +17,7 @@ for i in new:
     a = str.count(i)
 
     d[i] = str.count(i)
-
+#字典排序
 #根据key升序排列
 d = sorted(d.items(), key = lambda d:d[0] )
 #根据key降序排列
