@@ -13,9 +13,19 @@ for n in str:
         new.append(n)
 
 for i in new:
-    a =str.count(i)
+
+    a = str.count(i)
+
     d[i] = str.count(i)
 
+#根据key升序排列
+d = sorted(d.items(), key = lambda d:d[0] )
+#根据key降序排列
+# d = sorted(d.items(), key = lambda d:d[0] , reverse=True)
+#根据value降序排列
+# d = sorted(d.items(), key = lambda item:item[1] , reverse = True)
+#根据value升序排列
+# d = sorted(d.items(), key = lambda item:item[1])
 print d
 
 
